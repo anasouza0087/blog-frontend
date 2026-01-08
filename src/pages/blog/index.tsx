@@ -1,3 +1,4 @@
+import { PostsContainer } from "./postsContainer"
 import { Top } from "./top"
 
 export const Blog = () => {
@@ -5,6 +6,7 @@ export const Blog = () => {
     <div className="flex justify-center p-8">
       <div className="w-5/12">
         <Top />
+        <PostsContainer />
       </div>
     </div>
   )
