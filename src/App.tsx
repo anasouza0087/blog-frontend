@@ -1,7 +1,8 @@
-import { Blog } from "./pages/blog"
+import AppRoutes from "./Routes"
 
 function App() {
-  return <Blog />
+  // return <Blog />
+  return <AppRoutes />
 }
 
 export default App

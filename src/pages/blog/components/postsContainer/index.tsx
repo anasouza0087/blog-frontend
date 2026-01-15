@@ -1,9 +1,9 @@
-import { CardPostPreview } from "../cards"
+import { CardPost } from "../cards"
 
 export const PostsContainer = () => {
   return (
     <div className="w-full h-full">
-      <CardPostPreview />
+      <CardPost />
     </div>
   )
 }

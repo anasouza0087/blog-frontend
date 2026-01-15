@@ -1,4 +1,4 @@
-import { Modal } from "../../../ui"
+import { Modal } from "../../../../ui"
 
 interface ICreateOrEditPost {
   open: boolean
