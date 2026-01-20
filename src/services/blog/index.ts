@@ -1,3 +1,2 @@
-export * from "./application"
-export * from "./domain"
-export * from "./interface"
+export * from './domain/interface'
+export * from './services'

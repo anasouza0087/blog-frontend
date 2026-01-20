@@ -1,13 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react"
-
-/* Tipagens básicas */
-export interface Post {
-  id: string
-  title: string
-  content: string
-  author: string
-  createdAt: string
-}
+import { useBlog } from "../hooks/useBlog"
+import type { Post } from "../../../services/blog"
 
 interface BlogContextData {
   posts: Post[]
@@ -27,12 +20,12 @@ interface BlogProviderProps {
 }
 
 export const BlogProvider = ({ children }: BlogProviderProps) => {
-  const [posts, setPosts] = useState<Post[]>([])
   const [selectedPost, setSelectedPost] = useState<Post | null>(null)
   const [openDetails, setOpenDetails] = useState({
     open: false,
     data: undefined,
   })
+  const { posts, setPosts } = useBlog()
 
   return (
     <BlogContext.Provider
