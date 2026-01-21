@@ -9,6 +9,14 @@ interface BlogContextData {
   setSelectedPost: (post: Post | null) => void
   openDetails: { open: boolean; data: any }
   setOpenDetails: React.Dispatch<React.SetStateAction<any>>
+  postForm: Partial<Post>
+  setPostForm: React.Dispatch<React.SetStateAction<Partial<Post>>>
+  onChangePostForm: (name: string, value: string | number) => void
+  openModal: { isOpen: boolean; data: undefined }
+  setOpenModal: React.Dispatch<
+    React.SetStateAction<{ isOpen: boolean; data: undefined }>
+  >
+  createPost: () => void
 }
 
 /* Criação do contexto */
@@ -25,7 +33,16 @@ export const BlogProvider = ({ children }: BlogProviderProps) => {
     open: false,
     data: undefined,
   })
-  const { posts, setPosts } = useBlog()
+  const {
+    posts,
+    setPosts,
+    postForm,
+    setPostForm,
+    onChangePostForm,
+    openModal,
+    setOpenModal,
+    createPost,
+  } = useBlog()
 
   return (
     <BlogContext.Provider
@@ -36,6 +53,12 @@ export const BlogProvider = ({ children }: BlogProviderProps) => {
         setSelectedPost,
         openDetails,
         setOpenDetails,
+        postForm,
+        setPostForm,
+        onChangePostForm,
+        openModal,
+        setOpenModal,
+        createPost,
       }}
     >
       {children}

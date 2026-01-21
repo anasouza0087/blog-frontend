@@ -9,7 +9,7 @@ export const CardPost = () => {
   return posts.map((post: Post) => {
     return (
       <div
-        className="w-full border-2 border-black border-solid flex flex-col justify-between p-4 h-52"
+        className="w-full border-2 border-black border-solid flex flex-col justify-between p-4 h-52 mt-4"
         onClick={() => navigate("/posts/")}
         key={post?.id}
       >

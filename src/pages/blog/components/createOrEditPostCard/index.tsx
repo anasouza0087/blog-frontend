@@ -1,4 +1,5 @@
 import { Modal } from "../../../../ui"
+import { useBlogContext } from "../../context/BlogContext"
 
 interface ICreateOrEditPost {
   open: boolean
@@ -6,6 +7,8 @@ interface ICreateOrEditPost {
 }
 
 export const CreateOrEditPost = ({ open, onClose }: ICreateOrEditPost) => {
+  const { onChangePostForm, postForm, createPost } = useBlogContext()
+
   return (
     <Modal isOpen={open} onClose={onClose}>
       <h2 className="font-bold text-4xl">// Novo Post</h2>
@@ -14,6 +17,8 @@ export const CreateOrEditPost = ({ open, onClose }: ICreateOrEditPost) => {
         <input
           placeholder="Digite o título do post"
           className="w-full border-2 rounded-sm border-gray-600 p-1 focus:outline-none focus:ring-0"
+          onChange={(e) => onChangePostForm("title", e.target.value)}
+          value={postForm?.title}
         />
       </div>
 
@@ -23,14 +28,13 @@ export const CreateOrEditPost = ({ open, onClose }: ICreateOrEditPost) => {
           <input
             placeholder="Seu nome"
             className=" border-2 rounded-sm border-gray-600 p-1 focus:outline-none focus:ring-0"
+            onChange={(e) => onChangePostForm("user", e.target.value)}
+            value={postForm?.user}
           />
         </div>
         <div className="flex flex-col m-2 w-full">
           <label>* Categoria:</label>
-          <input
-            placeholder="Ex.: Tecnologia, Cotidiano, etc..."
-            className=" border-2 rounded-sm border-gray-600 p-1 focus:outline-none focus:ring-0"
-          />
+          <select className=" border-2 rounded-sm border-gray-600 p-1 focus:outline-none focus:ring-0"></select>
         </div>
       </div>
 
@@ -47,6 +51,7 @@ export const CreateOrEditPost = ({ open, onClose }: ICreateOrEditPost) => {
         <input
           placeholder="Conteúdo completo do Post"
           className="w-full border-2 rounded-sm border-gray-600 p-1 focus:outline-none focus:ring-0"
+          onChange={(e) => onChangePostForm("text", e.target.value)}
         />
       </div>
 
@@ -55,10 +60,15 @@ export const CreateOrEditPost = ({ open, onClose }: ICreateOrEditPost) => {
       </div>
 
       <div className="w-full m-2">
-        <button className="bg-black text-amber-50 rounded p-2 ">
+        <button
+          className="bg-black text-amber-50 rounded p-2 "
+          onClick={createPost}
+        >
           [Publicar Post]
         </button>
-        <button className="text-black rounded p-2" onClick={()=> onClose()}>[Cancelar]</button>
+        <button className="text-black rounded p-2" onClick={() => onClose()}>
+          [Cancelar]
+        </button>
       </div>
     </Modal>
   )

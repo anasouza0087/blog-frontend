@@ -1,10 +1,11 @@
 import { HiMagnifyingGlass } from "react-icons/hi2"
 import { CardTheme } from "./CardTheme"
-import { useState } from "react"
 import { CreateOrEditPost } from "../createOrEditPostCard"
+import { useBlogContext } from "../../context/BlogContext"
 
 export const Top = () => {
-  const [openModal, setOpenModal] = useState({ isOpen: false, data: undefined })
+  const { openModal, setOpenModal } = useBlogContext()
+
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex flex-row justify-between">
