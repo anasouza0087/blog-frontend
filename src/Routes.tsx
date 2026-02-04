@@ -1,12 +1,17 @@
 import { Routes, Route } from "react-router-dom"
-import { PostDetailsContainer } from "./pages/blog/components/postDetails/PostDetailsContainer"
 import { Blog } from "./pages/blog"
+import { PostsPage, PostDetailsContainer } from "./features/blog/components"
+import { PATHS } from "./routes/paths"
+import { BlogProvider } from "./pages/blog/context/BlogContext"
 
 export default function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<Blog />} />
-      <Route path="/posts/" element={<PostDetailsContainer />} />
-    </Routes>
+    <BlogProvider>
+      <Routes>
+        <Route path="/" element={<Blog />} />
+        <Route path={PATHS.POSTS} element={<PostsPage />} />
+        <Route path="/posts/:id" element={<PostDetailsContainer />} />
+      </Routes>
+    </BlogProvider>
   )
 }

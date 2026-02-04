@@ -1,0 +1,6 @@
+export * from '../../../pages/blog/components/cards'
+export * from '../../../pages/blog/components/postFormModal'
+export * from '../../../pages/blog/components/footer'
+export * from '../../../pages/blog/components/postDetails/PostDetailsContainer'
+export * from '../../../pages/blog/components/postsContainer'
+export * from '../../../pages/blog/components/top'

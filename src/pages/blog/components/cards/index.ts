@@ -1,1 +1,2 @@
-export * from './CardPost'
+export * from './PostList'
+export * from './PostCard'

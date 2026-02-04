@@ -9,3 +9,8 @@ export interface Post {
 }
 
 export type Theme = "Carreira" | "Cultura" | "Cotidiano"
+
+export interface FilterPost {
+  theme?: Theme
+  id?: number
+}

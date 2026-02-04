@@ -1,11 +1,11 @@
 import axios from "axios"
-import type { Post, Theme } from "../domain/interface"
-import type { CreatePostDTO } from "./@types"
+import type { FilterPost, Post } from "../domain/interface"
+import type { CreatePostDTO, UpdatePostDTO } from "./@types"
 
 export class ListService {
-  async list(filter?: Theme): Promise<Post[]> {
+  async list(filter?: FilterPost): Promise<Post[]> {
     const { data } = await axios.get<Post[]>(
-      "http://localhost:3000/posts.json",
+      "http://localhost:3000/posts",
       { params: filter },
     )
     return data
@@ -19,5 +19,21 @@ export class CreatePostService {
     })
 
     return data
+  }
+}
+
+export class UpdatePostService {
+  async updatePost(post: UpdatePostDTO): Promise<Post> {
+    const { data } = await axios.put(`http://localhost:3000/post/${post.id}`, {
+      post,
+    })
+
+    return data
+  }
+}
+
+export class DeletePostService {
+  async DeletePost(postId: number): Promise<void> {
+    await axios.delete(`http://localhost:3000/posts/${postId}`)
   }
 }

@@ -1,10 +1,9 @@
 import { HiMagnifyingGlass } from "react-icons/hi2"
 import { CardTheme } from "./CardTheme"
-import { CreateOrEditPost } from "../createOrEditPostCard"
 import { useBlogContext } from "../../context/BlogContext"
 
 export const Top = () => {
-  const { openModal, setOpenModal } = useBlogContext()
+  const { setOpenModal } = useBlogContext()
 
   return (
     <div className="w-full flex flex-col">
@@ -22,9 +21,7 @@ export const Top = () => {
           pensamentos e reflexões desde 2005
         </h2>
       </div>
-
       <hr className="w-full bg-black mt-8 mb-8" />
-
       <div className="flex flex-col">
         <div className="flex flex-row items-center justify-start">
           <HiMagnifyingGlass />
@@ -34,13 +31,6 @@ export const Top = () => {
           <CardTheme />
         </div>
       </div>
-
-      {openModal.isOpen && (
-        <CreateOrEditPost
-          open={openModal.isOpen}
-          onClose={() => setOpenModal({ isOpen: false, data: undefined })}
-        />
-      )}
     </div>
   )
 }
