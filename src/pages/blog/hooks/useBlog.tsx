@@ -97,7 +97,7 @@ export const useBlog = () => {
       useCase.execute()
     } finally {
       setOpenModal({ isOpen: false, data: undefined })
-      await getPosts()
+      await getPosts({ id: postForm.id })
     }
   }
 

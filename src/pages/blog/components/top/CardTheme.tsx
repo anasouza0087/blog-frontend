@@ -4,11 +4,18 @@ export const CardTheme = () => {
     { id: 1, name: "Cultura" },
     { id: 2, name: "Cotidiano" },
   ]
-  return themes.map((theme) => {
-    return (
-      <div className="p-1 m-1 border-gray-400 border-solid border-2 font-bold">
-        [{theme.name}]
-      </div>
-    )
-  })
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      {themes.map((theme) => (
+        <button
+          key={theme.id}
+          type="button"
+          className="inline-flex items-center justify-center px-3 py-1 text-sm rounded-full border border-gray-300 bg-gray-50 hover:bg-gray-100"
+        >
+          {theme.name}
+        </button>
+      ))}
+    </div>
+  )
 }

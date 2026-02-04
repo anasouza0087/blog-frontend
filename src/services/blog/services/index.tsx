@@ -24,7 +24,7 @@ export class CreatePostService {
 
 export class UpdatePostService {
   async updatePost(post: UpdatePostDTO): Promise<Post> {
-    const { data } = await axios.put(`http://localhost:3000/post/${post.id}`, {
+    const { data } = await axios.put(`http://localhost:3000/posts/${post.id}`, {
       post,
     })
 

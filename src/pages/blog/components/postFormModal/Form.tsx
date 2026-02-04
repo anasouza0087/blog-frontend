@@ -24,7 +24,7 @@ export const PostForm = ({
           <label>* Title:</label>
           <input
             placeholder="Enter post title"
-            className="w-full border-2 rounded-sm border-gray-600 p-1 focus:outline-none focus:ring-0"
+            className="w-full border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
             onChange={(e) => onChangePostForm("title", e.target.value)}
             value={postForm?.title}
           />
@@ -35,14 +35,14 @@ export const PostForm = ({
             <label>* Author:</label>
             <input
               placeholder="Your name"
-              className=" border-2 rounded-sm border-gray-600 p-1 focus:outline-none focus:ring-0"
+              className=" border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
               onChange={(e) => onChangePostForm("user", e.target.value)}
               value={postForm?.user}
             />
           </div>
           <div className="flex flex-col m-2 w-full">
             <label>* Category:</label>
-            <select className=" border-2 rounded-sm border-gray-600 p-1 focus:outline-none focus:ring-0">
+            <select className=" border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0">
               <option value="">Select</option>
             </select>
           </div>
@@ -52,7 +52,7 @@ export const PostForm = ({
           <label>* Summary:</label>
           <input
             placeholder="A brief summary of the post (shown in the list)"
-            className="w-full border-2 rounded-sm border-gray-600 p-1 focus:outline-none focus:ring-0"
+            className="w-full border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
           />
         </div>
 
@@ -60,7 +60,7 @@ export const PostForm = ({
           <label>* Content:</label>
           <input
             placeholder="Full post content"
-            className="w-full border-2 rounded-sm border-gray-600 p-1 focus:outline-none focus:ring-0"
+            className="w-full border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
             onChange={(e) => onChangePostForm("text", e.target.value)}
             value={postForm?.text}
           />
@@ -70,11 +70,17 @@ export const PostForm = ({
           <hr className=" bg-gray-500 " />
         </div>
 
-        <div className="w-full m-2">
-          <button className="bg-black text-amber-50 rounded p-2 " onClick={onSubmit}>
+        <div className="w-full m-2 flex gap-3">
+          <button
+            className="inline-flex items-center justify-center shrink-0 whitespace-nowrap bg-black text-amber-50 rounded px-4 py-2 text-sm"
+            onClick={onSubmit}
+          >
             [Publish Post]
           </button>
-          <button className="text-black rounded p-2" onClick={onClose}>
+          <button
+            className="inline-flex items-center justify-center shrink-0 whitespace-nowrap text-black rounded border border-gray-300 px-4 py-2 text-sm"
+            onClick={onClose}
+          >
             [Cancel]
           </button>
         </div>

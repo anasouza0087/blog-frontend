@@ -27,7 +27,7 @@ export const PostDetailsContainer = () => {
   }
 
   return (
-    <div className="flex flex-col w-5/12 mx-auto">
+    <div className="flex flex-col max-w-3xl w-full mx-auto px-4 sm:px-6">
       <div className="mt-4 mb-4 ">
         <b
           onClick={() => {
@@ -47,12 +47,14 @@ export const PostDetailsContainer = () => {
         </b>
       </div>
       {post && (
-        <PostCard
-          isEditable={true}
-          post={post}
-          onEdit={handleEdit}
-          onDelete={deletePost}
-        />
+        <div className="mb-6">
+          <PostCard
+            isEditable={true}
+            post={post}
+            onEdit={handleEdit}
+            onDelete={deletePost}
+          />
+        </div>
       )}
       <Commentary />
 

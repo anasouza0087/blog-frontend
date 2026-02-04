@@ -16,51 +16,52 @@ export const PostCard = ({
   onOpenDetails,
 }: PostCardProps) => {
   return (
-    <div
-      className="w-full border-2 border-black border-solid flex flex-col justify-between p-4 h-52 mt-4"
-      onClick={() => onOpenDetails && onOpenDetails(post.id as number)}
-    >
+    <article className="w-full rounded border border-neutral-200 bg-white p-4 flex flex-col justify-between overflow-hidden">
       <div>
-        <div className="flex flex-row justify-between">
-          <h2 className="font-bold ">{post?.title}</h2>
-          <div className="bg-black text-white p-1">Tema</div>
-        </div>
-        <div className="flex flex-row justify-between mt-2">
-          <div>
-            <h1 className="font-light text-gray-500">
-              {`por ${post?.user} * ${new Date(
-                post?.created_at
-              ).toLocaleDateString("pt-BR")} * x comentários`}
-            </h1>
+        <div className="flex items-start justify-between gap-3 mb-2">
+          <h4 className="font-bold max-w-[70%] wrap-break-word">
+            {post.title}
+          </h4>
+          <div className="flex flex-col items-end">
+            <span className="text-sm text-neutral-400">
+              {new Date(post.created_at).toLocaleDateString("pt-BR")}
+            </span>
+            {post.theme ? (
+              <span className="hidden md:inline-block text-xs bg-neutral-100 text-neutral-700 px-2 py-1 rounded mt-1">
+                {post.theme}
+              </span>
+            ) : null}
           </div>
-          {isEditable && (
-            <div className=" flex flex-row ">
-              <button
-                className="p-1.5 rounded border-#000 border-2 mr-1.5"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onEdit?.(post);
-                }}
-              >
-                Edit
-              </button>
-              <button
-                className="p-1.5 rounded border-red-600 text-red-600 border-2"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onDelete?.(post?.id as number)
-                }}
-              >
-                Delete
-              </button>
-            </div>
-          )}
         </div>
-        <p className="font-light text-gray-500 text-justify text-2xl">
-          {post?.text}
+
+        <p className="text-neutral-800 line-clamp-3 wrap-break-word overflow-hidden">
+          {post.text}
         </p>
       </div>
-      {!isEditable && <div className="underline">{">>"} Read more </div>}
-    </div>
+
+      {isEditable ? (
+        <div className="flex items-center justify-end gap-2 mt-4">
+          <button
+            className="inline-flex items-center justify-center shrink-0 bg-amber-400 text-white rounded px-3 py-1 text-sm"
+            onClick={() => onEdit?.(post)}
+          >
+            Edit
+          </button>
+          <button
+            className="inline-flex items-center justify-center shrink-0 bg-red-500 text-white rounded px-3 py-1 text-sm"
+            onClick={() => onDelete?.(post.id)}
+          >
+            Delete
+          </button>
+        </div>
+      ) : (
+        <div
+          className="underline text-sm mt-1"
+          onClick={() => onOpenDetails?.(post.id)}
+        >
+          {">>"} Read more
+        </div>
+      )}
+    </article>
   )
 }

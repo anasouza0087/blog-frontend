@@ -17,18 +17,19 @@ export const PostList = ({
   onOpenDetails,
 }: PostListProps) => {
   return (
-    <>
-      {posts.map((post: Post) => (
-        <div key={post.id}>
+    <section className="w-full">
+      <div className="flex flex-col gap-6">
+        {posts.map((post: Post) => (
           <PostCard
+            key={post.id}
             isEditable={isEditable}
             post={post}
             onEdit={onEdit}
             onDelete={onDelete}
             onOpenDetails={onOpenDetails}
           />
-        </div>
-      ))}
-    </>
+        ))}
+      </div>
+    </section>
   )
 }
