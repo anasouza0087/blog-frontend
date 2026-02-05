@@ -1,4 +1,5 @@
 import type { Post } from "../../../../services/blog"
+import { THEMES } from "../../constants"
 
 interface CreateOrEditPostFormProps {
   open: boolean
@@ -16,7 +17,7 @@ export const PostForm = ({
 }: CreateOrEditPostFormProps) => {
   return (
     <>
-      <div>
+      <div className="overflow-hidden">
         <h2 className="font-bold text-4xl">
           {postForm?.id ? "Edit Post" : "New Post"}
         </h2>
@@ -29,8 +30,7 @@ export const PostForm = ({
             value={postForm?.title}
           />
         </div>
-
-        <div className="w-full flex flex-row">
+        <div className="flex flex-wrap">
           <div className="flex flex-col m-2 w-full">
             <label>* Author:</label>
             <input
@@ -42,12 +42,20 @@ export const PostForm = ({
           </div>
           <div className="flex flex-col m-2 w-full">
             <label>* Category:</label>
-            <select className=" border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0">
-              <option value="">Select</option>
+            <select
+              className=" border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
+              onChange={(e) => onChangePostForm("theme", e.target.value)}
+            >
+              {THEMES.map((theme) => {
+                return (
+                  <option key={theme.id} value={theme.name}>
+                    {theme.name}
+                  </option>
+                )
+              })}
             </select>
           </div>
         </div>
-
         <div className="flex flex-col m-2">
           <label>* Summary:</label>
           <input
