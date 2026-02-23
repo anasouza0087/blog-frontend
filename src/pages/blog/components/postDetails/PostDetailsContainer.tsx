@@ -28,7 +28,7 @@ export const PostDetailsContainer = () => {
 
   return (
     <div className="flex flex-col max-w-3xl w-full mx-auto px-4 sm:px-6">
-      <div className="mt-4 mb-4 ">
+      <div className="mt-4 mb-4 cursor-pointer">
         <b
           onClick={() => {
             setPostForm({

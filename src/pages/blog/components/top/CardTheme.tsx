@@ -11,7 +11,7 @@ export const CardTheme = () => {
         <button
           key={theme.id}
           type="button"
-          className="inline-flex items-center justify-center px-3 py-1 text-sm rounded-full border border-gray-300 bg-gray-50 hover:bg-gray-100"
+          className="inline-flex items-center justify-center px-3 py-1 text-sm rounded-full border border-gray-300 bg-gray-50 hover:bg-gray-100 cursor-pointer"
           onClick={() => getPosts({ theme: theme.name as Theme })}
         >
           {theme.name}

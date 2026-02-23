@@ -19,12 +19,12 @@ export const PostForm = ({
     <>
       <div className="overflow-hidden">
         <h2 className="font-bold text-4xl">
-          {postForm?.id ? "Edit Post" : "New Post"}
+          {postForm?.id ? "Editar Post" : "Novo Post"}
         </h2>
         <div className="flex flex-col m-2">
-          <label>* Title:</label>
+          <label>* Título:</label>
           <input
-            placeholder="Enter post title"
+            placeholder="Digite o título do post"
             className="w-full border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
             onChange={(e) => onChangePostForm("title", e.target.value)}
             value={postForm?.title}
@@ -32,16 +32,16 @@ export const PostForm = ({
         </div>
         <div className="flex flex-wrap">
           <div className="flex flex-col m-2 w-full">
-            <label>* Author:</label>
+            <label>* Autor:</label>
             <input
-              placeholder="Your name"
+              placeholder="Seu nome"
               className=" border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
               onChange={(e) => onChangePostForm("user", e.target.value)}
               value={postForm?.user}
             />
           </div>
           <div className="flex flex-col m-2 w-full">
-            <label>* Category:</label>
+            <label>* Categoria:</label>
             <select
               className=" border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
               onChange={(e) => onChangePostForm("theme", e.target.value)}
@@ -57,17 +57,17 @@ export const PostForm = ({
           </div>
         </div>
         <div className="flex flex-col m-2">
-          <label>* Summary:</label>
+          <label>* Resumo:</label>
           <input
-            placeholder="A brief summary of the post (shown in the list)"
+            placeholder="Um breve resumo do post (exibido na lista)"
             className="w-full border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
           />
         </div>
 
         <div className="flex flex-col m-2">
-          <label>* Content:</label>
+          <label>* Conteúdo:</label>
           <input
-            placeholder="Full post content"
+            placeholder="Conteúdo completo do post"
             className="w-full border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
             onChange={(e) => onChangePostForm("text", e.target.value)}
             value={postForm?.text}
@@ -83,13 +83,13 @@ export const PostForm = ({
             className="inline-flex items-center justify-center shrink-0 whitespace-nowrap bg-black text-amber-50 rounded px-4 py-2 text-sm"
             onClick={onSubmit}
           >
-            [Publish Post]
+            [Publicar Post]
           </button>
           <button
             className="inline-flex items-center justify-center shrink-0 whitespace-nowrap text-black rounded border border-gray-300 px-4 py-2 text-sm"
             onClick={onClose}
           >
-            [Cancel]
+            [Cancelar]
           </button>
         </div>
       </div>
