@@ -17,7 +17,7 @@ export const useBlog = () => {
   const [loading, setLoading] = useState(false)
   const [loadApi, setLoadApi] = useState(true)
   const [openModal, setOpenModal] = useState({ isOpen: false, data: undefined })
-  const [posts, setPosts] = useState<Post[]>([])
+  const [allPosts, setAllPosts] = useState<Post[]>([])
   const [postForm, setPostForm] = useState<Partial<Post>>({
     id: undefined,
     title: "",
@@ -27,6 +27,9 @@ export const useBlog = () => {
     created_at: "",
     updated_at: "",
   })
+
+  
+
   const navigate = useNavigate()
 
   const getPosts = async (filter?: FilterPost) => {
@@ -34,7 +37,8 @@ export const useBlog = () => {
     try {
       const useCase = new PostListUseCase(filter)
       const posts = await useCase.execute()
-      setPosts(posts)
+      setAllPosts(posts)
+
       if (filter?.id) {
         setPostForm({
           id: posts?.[0]?.id,
@@ -46,6 +50,8 @@ export const useBlog = () => {
           updated_at: posts?.[0]?.updated_at,
         })
       }
+    } catch (err) {
+      console.error(err)
     } finally {
       setLoading(false)
       setLoadApi(false)
@@ -64,6 +70,7 @@ export const useBlog = () => {
     if (!postForm.title || !postForm.user || !postForm.text) {
       return
     }
+
     const newPost: CreatePostDTO = {
       title: postForm.title,
       theme: postForm.theme,
@@ -71,9 +78,12 @@ export const useBlog = () => {
       text: postForm.text,
       created_at: "",
     }
+
     try {
       const useCase = new CreatePostUseCase(newPost)
-      useCase.execute()
+      await useCase.execute()
+    } catch (err) {
+      console.error(err)
     } finally {
       setOpenModal({ isOpen: false, data: undefined })
       getPosts()
@@ -84,6 +94,7 @@ export const useBlog = () => {
     if (!postForm.title || !postForm.user || !postForm.text || !postForm.id) {
       return
     }
+
     const updatedPost: UpdatePostDTO = {
       id: postForm.id,
       title: postForm.title,
@@ -92,9 +103,12 @@ export const useBlog = () => {
       text: postForm.text,
       created_at: "",
     }
+
     try {
       const useCase = await new UpdatePostUseCase(updatedPost)
-      useCase.execute()
+      await useCase.execute()
+    } catch (err) {
+      console.error(err)
     } finally {
       setOpenModal({ isOpen: false, data: undefined })
       await getPosts({ id: postForm.id })
@@ -106,6 +120,9 @@ export const useBlog = () => {
     try {
       const useCase = await new DeletePostUseCase(postId)
       await useCase.execute()
+      // success
+    } catch (err) {
+      console.error(err)
     } finally {
       navigate("/")
     }
@@ -124,9 +141,20 @@ export const useBlog = () => {
     }
   }, [])
 
+  const [page, setPage] = useState(1)
+  const perPage = 5
+  const totalPages = Math.max(1, Math.ceil(allPosts.length / perPage))
+
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages)
+  }, [allPosts.length, totalPages])
+
+  const start = (page - 1) * perPage
+  const posts = allPosts.slice(start, start + perPage)
+
   return {
     posts,
-    setPosts,
+    setPosts: setAllPosts,
     getPosts,
     loading,
     postForm,
@@ -137,5 +165,9 @@ export const useBlog = () => {
     createPost,
     deletePost,
     createOrEditPost,
+    page,
+    setPage,
+    perPage,
+    totalPages,
   }
 }

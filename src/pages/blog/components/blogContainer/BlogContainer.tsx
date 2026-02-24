@@ -8,6 +8,7 @@ export const BlogContainer = () => {
   const { openModal, setOpenModal } = useBlogContext()
   return (
     <div className="flex justify-center p-8">
+      
       <div className="w-5/12">
         <Top />
         <PostsPage />

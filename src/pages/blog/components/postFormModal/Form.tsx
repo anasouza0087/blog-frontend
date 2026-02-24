@@ -46,22 +46,16 @@ export const PostForm = ({
               className=" border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
               onChange={(e) => onChangePostForm("theme", e.target.value)}
             >
+              <option value="">Selecione</option>
               {THEMES.map((theme) => {
                 return (
-                  <option key={theme.id} value={theme.name}>
+                  <option key={theme.id} value={theme.id}>
                     {theme.name}
                   </option>
                 )
               })}
             </select>
           </div>
-        </div>
-        <div className="flex flex-col m-2">
-          <label>* Resumo:</label>
-          <input
-            placeholder="Um breve resumo do post (exibido na lista)"
-            className="w-full border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
-          />
         </div>
 
         <div className="flex flex-col m-2">

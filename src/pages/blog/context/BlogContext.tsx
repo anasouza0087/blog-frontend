@@ -22,6 +22,10 @@ interface BlogContextData {
   deletePost: (postId: number) => void
   getPosts: (filter?: FilterPost) => void
   createOrEditPost: () => void
+  page?: number
+  setPage?: (page: number) => void
+  perPage?: number
+  totalPages?: number
 }
 
 /* Criação do contexto */
@@ -54,6 +58,10 @@ export const BlogProvider = ({ children }: BlogProviderProps) => {
     deletePost,
     getPosts,
     createOrEditPost,
+    page,
+    setPage,
+    perPage,
+    totalPages,
   } = useBlog()
 
   return (
@@ -74,6 +82,10 @@ export const BlogProvider = ({ children }: BlogProviderProps) => {
         deletePost,
         getPosts,
         createOrEditPost,
+        page,
+        setPage,
+        perPage,
+        totalPages,
       }}
     >
       {children}
