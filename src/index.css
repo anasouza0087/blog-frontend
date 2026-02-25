@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+/* scrollbar fina */
+.scrollbar-thin {
+  scrollbar-width: thin; /* Firefox */
+}
+
+/* trilho */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* fundo */
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* polegar */
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.3);
+  border-radius: 999px;
+}
+
+/* hover */
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 100, 100, 0.5);
+}

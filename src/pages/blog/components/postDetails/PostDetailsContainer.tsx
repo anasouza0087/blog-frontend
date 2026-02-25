@@ -1,14 +1,20 @@
 import { useNavigate, useParams } from "react-router"
 import { PostCard } from "../cards"
-import { Commentary } from "./Commentary"
 import { useBlogContext } from "../../context/BlogContext"
 import { useEffect } from "react"
 import { PostFormModal } from "../postFormModal"
 import type { Post } from "../../../../services/blog"
 
 export const PostDetailsContainer = () => {
-  const { setPostForm, getPosts, posts, setOpenModal, openModal, deletePost } =
-    useBlogContext()
+  const {
+    setPostForm,
+    getPosts,
+    posts,
+    setOpenModal,
+    openModal,
+    deletePost,
+    setShowError,
+  } = useBlogContext()
   const navigate = useNavigate()
 
   const { id } = useParams()
@@ -56,12 +62,14 @@ export const PostDetailsContainer = () => {
           />
         </div>
       )}
-      <Commentary />
 
       {openModal.isOpen && (
         <PostFormModal
           open={openModal.isOpen}
-          onClose={() => setOpenModal({ isOpen: false, data: undefined })}
+          onClose={() => {
+            setOpenModal({ isOpen: false, data: undefined })
+            setShowError(false)
+          }}
         />
       )}
     </div>

@@ -26,6 +26,9 @@ interface BlogContextData {
   setPage?: (page: number) => void
   perPage?: number
   totalPages?: number
+  closeModal: () => void
+  showError: boolean
+  setShowError: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 /* Criação do contexto */
@@ -62,6 +65,9 @@ export const BlogProvider = ({ children }: BlogProviderProps) => {
     setPage,
     perPage,
     totalPages,
+    closeModal,
+    showError,
+    setShowError,
   } = useBlog()
 
   return (
@@ -86,6 +92,9 @@ export const BlogProvider = ({ children }: BlogProviderProps) => {
         setPage,
         perPage,
         totalPages,
+        closeModal,
+        showError,
+        setShowError,
       }}
     >
       {children}

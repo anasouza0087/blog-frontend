@@ -12,6 +12,7 @@ import type {
 import { DeletePostUseCase } from "../../../services/blog/application/DeletePostUseCase"
 import { UpdatePostUseCase } from "../../../services/blog/application/UpdatePostUseCase"
 import { useNavigate } from "react-router"
+import { toast } from "react-toastify"
 
 export const useBlog = () => {
   const [loading, setLoading] = useState(false)
@@ -27,8 +28,7 @@ export const useBlog = () => {
     created_at: "",
     updated_at: "",
   })
-
-  
+  const [showError, setShowError] = useState(false)
 
   const navigate = useNavigate()
 
@@ -51,14 +51,45 @@ export const useBlog = () => {
         })
       }
     } catch (err) {
+      toast.error("Erro ao carregar os posts. Tente novamente.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
       console.error(err)
     } finally {
       setLoading(false)
       setLoadApi(false)
+      if (!filter?.id && !filter?.theme) {
+        toast.success("Posts carregados com sucesso!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        })
+      }
     }
   }
 
   const createOrEditPost = () => {
+    if (
+      !postForm?.text ||
+      !postForm?.title ||
+      !postForm?.user ||
+      !postForm?.theme
+    ) {
+      setShowError(true)
+      return
+    }
     if (postForm?.id) {
       updatePost()
     } else {
@@ -83,9 +114,29 @@ export const useBlog = () => {
       const useCase = new CreatePostUseCase(newPost)
       await useCase.execute()
     } catch (err) {
+      toast.error("Erro ao criar post. Tente novamente.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
       console.error(err)
     } finally {
-      setOpenModal({ isOpen: false, data: undefined })
+      toast.success("Post criado com sucesso!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+      closeModal()
       getPosts()
     }
   }
@@ -108,9 +159,29 @@ export const useBlog = () => {
       const useCase = await new UpdatePostUseCase(updatedPost)
       await useCase.execute()
     } catch (err) {
+      toast.error("Erro ao atualizar o post. Por favor, tente novamente.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
       console.error(err)
     } finally {
-      setOpenModal({ isOpen: false, data: undefined })
+      toast.success("Post atualizado com sucesso!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+      closeModal()
       await getPosts({ id: postForm.id })
     }
   }
@@ -119,13 +190,26 @@ export const useBlog = () => {
     if (!postId) return
     try {
       const useCase = await new DeletePostUseCase(postId)
-      await useCase.execute()
-      // success
+      await useCase.execute().then(() => {})
     } catch (err) {
       console.error(err)
     } finally {
-      navigate("/")
+      navigate("/", { state: { deleted: true } })
     }
+  }
+
+  const closeModal = () => {
+    setShowError(false)
+    setOpenModal({ isOpen: false, data: undefined })
+    setPostForm({
+      id: undefined,
+      title: "",
+      theme: undefined,
+      user: "",
+      text: "",
+      created_at: "",
+      updated_at: "",
+    })
   }
 
   const onChangePostForm = (name: string, value: string | number) => {
@@ -169,5 +253,8 @@ export const useBlog = () => {
     setPage,
     perPage,
     totalPages,
+    closeModal,
+    showError,
+    setShowError,
   }
 }

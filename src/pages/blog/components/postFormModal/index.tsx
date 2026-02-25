@@ -8,7 +8,7 @@ interface IPostFormModal {
 }
 
 export const PostFormModal = ({ open, onClose }: IPostFormModal) => {
-  const { onChangePostForm, postForm, createOrEditPost } = useBlogContext()
+  const { onChangePostForm, postForm, createOrEditPost, showError } = useBlogContext()
 
   return (
     <Modal isOpen={open} onClose={onClose}>
@@ -18,6 +18,7 @@ export const PostFormModal = ({ open, onClose }: IPostFormModal) => {
         postForm={postForm}
         onChangePostForm={onChangePostForm}
         onSubmit={createOrEditPost}
+        showError={showError}
       />
     </Modal>
   )

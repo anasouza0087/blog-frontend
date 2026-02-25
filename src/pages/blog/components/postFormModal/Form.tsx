@@ -7,6 +7,7 @@ interface CreateOrEditPostFormProps {
   postForm: Partial<Post>
   onChangePostForm: (name: string, value: string | number) => void
   onSubmit: () => void
+  showError: boolean
 }
 
 export const PostForm = ({
@@ -14,6 +15,7 @@ export const PostForm = ({
   postForm,
   onChangePostForm,
   onSubmit,
+  showError,
 }: CreateOrEditPostFormProps) => {
   return (
     <>
@@ -25,7 +27,7 @@ export const PostForm = ({
           <label>* Título:</label>
           <input
             placeholder="Digite o título do post"
-            className="w-full border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
+            className={`w-full border-2 rounded-sm ${showError && !postForm?.title ? "border-red-400" : "border-neutral-200"} p-1 focus:outline-none focus:ring-0`}
             onChange={(e) => onChangePostForm("title", e.target.value)}
             value={postForm?.title}
           />
@@ -35,7 +37,7 @@ export const PostForm = ({
             <label>* Autor:</label>
             <input
               placeholder="Seu nome"
-              className=" border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
+              className={`w-full border-2 rounded-sm ${showError && !postForm?.user ? "border-red-400" : "border-neutral-200"} p-1 focus:outline-none focus:ring-0`}
               onChange={(e) => onChangePostForm("user", e.target.value)}
               value={postForm?.user}
             />
@@ -43,7 +45,7 @@ export const PostForm = ({
           <div className="flex flex-col m-2 w-full">
             <label>* Categoria:</label>
             <select
-              className=" border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
+              className={`w-full border-2 rounded-sm ${showError && !postForm?.theme ? "border-red-400" : "border-neutral-200"} p-1 focus:outline-none focus:ring-0`}
               onChange={(e) => onChangePostForm("theme", e.target.value)}
             >
               <option value="">Selecione</option>
@@ -62,7 +64,7 @@ export const PostForm = ({
           <label>* Conteúdo:</label>
           <input
             placeholder="Conteúdo completo do post"
-            className="w-full border-2 rounded-sm border-neutral-200 p-1 focus:outline-none focus:ring-0"
+            className={`w-full border-2 rounded-sm ${showError && !postForm?.text ? "border-red-400" : "border-neutral-200"} p-1 focus:outline-none focus:ring-0`}
             onChange={(e) => onChangePostForm("text", e.target.value)}
             value={postForm?.text}
           />

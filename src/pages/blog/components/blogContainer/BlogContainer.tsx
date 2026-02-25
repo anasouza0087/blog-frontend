@@ -5,7 +5,7 @@ import { PostsPage } from "../postsContainer"
 import { Top } from "../top"
 
 export const BlogContainer = () => {
-  const { openModal, setOpenModal } = useBlogContext()
+  const { openModal, closeModal } = useBlogContext()
   return (
     <div className="flex justify-center p-8">
       
@@ -18,7 +18,7 @@ export const BlogContainer = () => {
       {openModal.isOpen && (
         <PostFormModal
           open={openModal.isOpen}
-          onClose={() => setOpenModal({ isOpen: false, data: undefined })}
+          onClose={closeModal}
         />
       )}
     </div>

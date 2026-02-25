@@ -19,12 +19,12 @@ export const PostCard = ({
 }: PostCardProps) => {
   return (
     <article
-      className={`w-full rounded border border-neutral-200 bg-white p-4 flex flex-col justify-between overflow-hidden ${!isEditable ? "cursor-pointer hover:bg-gray-100" : "cursor-default"}`}
+      className={`w-full ${isEditable ? "h-200 overflow-y-scroll scrollbar-thin" : ""} rounded border border-neutral-200 bg-white p-4 flex flex-col justify-between overflow-hidden ${!isEditable ? "cursor-pointer hover:bg-gray-100" : "cursor-default"}`}
       onClick={() => !isEditable && onOpenDetails?.(post.id)}
     >
       <div>
         <div className="flex items-start justify-between gap-3 mb-2">
-          <h4 className="font-bold max-w-[70%] break-words">{post.title}</h4>
+          <h4 className="font-bold max-w-[70%] wrap-break-word">{post.title}</h4>
           <div className="flex flex-col items-end">
             {post.theme ? (
               <span className="hidden md:inline-block text-xs bg-neutral-100 text-neutral-700 px-2 py-1 rounded mt-1">
