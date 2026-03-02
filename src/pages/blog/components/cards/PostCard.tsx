@@ -24,7 +24,7 @@ export const PostCard = ({
     >
       <div>
         <div className="flex items-start justify-between gap-3 mb-2">
-          <h4 className="font-bold max-w-[70%] wrap-break-word">{post.title}</h4>
+          <h4 className="font-bold max-w-[70%] truncate">{post.title}</h4>
           <div className="flex flex-col items-end">
             {post.theme ? (
               <span className="hidden md:inline-block text-xs bg-neutral-100 text-neutral-700 px-2 py-1 rounded mt-1">
@@ -35,7 +35,7 @@ export const PostCard = ({
         </div>
 
         <div className="flex flex-row justify-between items-center">
-          <span className="text-sm text-neutral-600">
+          <span className="text-sm text-neutral-600 inline-block truncate max-w-[60%]">
             Escrito por <b>{post.user}</b> em{" "}
             {new Date(post.created_at).toLocaleDateString("pt-BR")}
           </span>
@@ -69,7 +69,9 @@ export const PostCard = ({
 
         <hr className="h-0.5 bg-neutral-200 mt-4 mb-4" />
 
-        <p className="text-neutral-800 line-clamp-3 break-words overflow-hidden">
+        <p
+          className={`text-neutral-800 ${!isEditable ? "line-clamp-3 overflow-hidden" : "wrap-break-word whitespace-pre-wrap"}`}
+        >
           {post.text}
         </p>
       </div>

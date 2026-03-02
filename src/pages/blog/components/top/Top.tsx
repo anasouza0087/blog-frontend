@@ -8,7 +8,7 @@ export const Top = () => {
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex flex-row justify-between items-center">
-        <h3 className="font-bold text-4xl">~/ meu blog</h3>
+        <h3 className="font-bold text-4xl">~/ Ruby Blog</h3>
         <div className="flex items-center gap-2">
           <button
             className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-black text-amber-50"

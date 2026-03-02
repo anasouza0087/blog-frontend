@@ -27,7 +27,7 @@ export const PostForm = ({
           <label>* Título:</label>
           <input
             placeholder="Digite o título do post"
-            className={`w-full border-2 rounded-sm ${showError && !postForm?.title ? "border-red-400" : "border-neutral-200"} p-1 focus:outline-none focus:ring-0`}
+            className={`w-full border-2 rounded-sm ${showError && !postForm?.title ? "border-red-400" : "border-neutral-200"} p-1 focus:outline-none focus:ring-0 placeholder:text-gray-400 placeholder:italic`}
             onChange={(e) => onChangePostForm("title", e.target.value)}
             value={postForm?.title}
           />
@@ -37,7 +37,7 @@ export const PostForm = ({
             <label>* Autor:</label>
             <input
               placeholder="Seu nome"
-              className={`w-full border-2 rounded-sm ${showError && !postForm?.user ? "border-red-400" : "border-neutral-200"} p-1 focus:outline-none focus:ring-0`}
+              className={`w-full border-2 rounded-sm ${showError && !postForm?.user ? "border-red-400" : "border-neutral-200"} p-1 focus:outline-none focus:ring-0 placeholder:text-gray-400 placeholder:italic`}
               onChange={(e) => onChangePostForm("user", e.target.value)}
               value={postForm?.user}
             />
@@ -45,7 +45,7 @@ export const PostForm = ({
           <div className="flex flex-col m-2 w-full">
             <label>* Categoria:</label>
             <select
-              className={`w-full border-2 rounded-sm ${showError && !postForm?.theme ? "border-red-400" : "border-neutral-200"} p-1 focus:outline-none focus:ring-0`}
+              className={`w-full border-2 rounded-sm ${showError && !postForm?.theme ? "border-red-400" : "border-neutral-200"} p-1 focus:outline-none focus:ring-0 placeholder:text-gray-400 placeholder:italic`}
               onChange={(e) => onChangePostForm("theme", e.target.value)}
             >
               <option value="">Selecione</option>
@@ -62,9 +62,10 @@ export const PostForm = ({
 
         <div className="flex flex-col m-2">
           <label>* Conteúdo:</label>
-          <input
+          <textarea
+            rows={3}
             placeholder="Conteúdo completo do post"
-            className={`w-full border-2 rounded-sm ${showError && !postForm?.text ? "border-red-400" : "border-neutral-200"} p-1 focus:outline-none focus:ring-0`}
+            className={`w-full border-2 rounded-sm ${showError && !postForm?.text ? "border-red-400" : "border-neutral-200"} p-1 focus:outline-none focus:ring-0 placeholder:text-gray-400 placeholder:italic`}
             onChange={(e) => onChangePostForm("text", e.target.value)}
             value={postForm?.text}
           />
