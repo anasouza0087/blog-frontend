@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+# Blog Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este repositório contém o frontend de um blog construído com React e TypeScript usando Vite como bundler.
 
-Currently, two official plugins are available:
+## Tecnologias
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** para a camada de interface.
+- **TypeScript** com tipagem forte em componentes, hooks e serviços.
+- **Vite** como servidor de desenvolvimento e build.
+- **Tailwind CSS** para estilização utilitária.
+- **axios** para chamadas HTTP ao backend.
+- **react-router-dom** para roteamento de páginas.
+- **react-icons** e **react-toastify** para ícones e notificações.
 
-## React Compiler
+## Estrutura de Pastas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├─ pages/            # páginas da aplicação (ex: blog)
+├─ features/blog/    # lógica da feature (use-cases, domínio, serviços)
+├─ services/blog/    # integração com API (casos de uso, interfaces, implementação)
+├─ ui/               # componentes reutilizáveis (Modal, Toast, etc.)
+├─ context/          # Context API para estado global
+├─ hooks/            # hooks personalizados
+└─ assets/           # imagens e recursos estáticos
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+A arquitetura separa apresentação, aplicação (use-cases), domínio e infraestrutura.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Scripts úteis
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install     # instala dependências
+npm run dev     # inicia Vite em modo dev
+npm run build   # compila TypeScript e gera build estático
+npm run preview # serve o build para checagem
+npm run lint    # executa ESLint
 ```
+
+## Configuração
+
+- Tailwind é habilitado via plugin `@tailwindcss/vite` e importado em `src/index.css`.
+- ESLint configurado em `eslint.config.js` com regras para TypeScript e React Hooks.
+- TypeScript possui configs separadas (`tsconfig.app.json` e `tsconfig.node.json`) referenciadas em `tsconfig.json`.
+
+---
+
+Essa documentação é um ponto de partida rápido para novos desenvolvedores explorarem o projeto.
