@@ -11,7 +11,7 @@ export const PostFormModal = ({ open, onClose }: IPostFormModal) => {
   const { onChangePostForm, postForm, createOrEditPost, showError } = useBlogContext()
 
   return (
-    <Modal isOpen={open} onClose={onClose}>
+    <Modal isOpen={open} >
       <PostForm
         open={open}
         onClose={onClose}
