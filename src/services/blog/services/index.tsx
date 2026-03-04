@@ -1,20 +1,19 @@
-import axios from "axios"
 import type { FilterPost, Post } from "../domain/interface"
 import type { CreatePostDTO, UpdatePostDTO } from "./@types"
+import { axiosBlog } from "../../https"
 
 export class ListService {
   async list(filter?: FilterPost): Promise<Post[]> {
-    const { data } = await axios.get<Post[]>(
-      "http://localhost:3000/posts",
-      { params: filter },
-    )
+    const { data } = await axiosBlog.get<Post[]>("/posts", {
+      params: filter,
+    })
     return data
   }
 }
 
 export class CreatePostService {
   async createPost(post: CreatePostDTO): Promise<Post> {
-    const { data } = await axios.post("http://localhost:3000/posts", {
+    const { data } = await axiosBlog.post("/posts", {
       post,
     })
 
@@ -24,7 +23,7 @@ export class CreatePostService {
 
 export class UpdatePostService {
   async updatePost(post: UpdatePostDTO): Promise<Post> {
-    const { data } = await axios.put(`http://localhost:3000/posts/${post.id}`, {
+    const { data } = await axiosBlog.put(`/posts/${post.id}`, {
       post,
     })
 
@@ -34,6 +33,6 @@ export class UpdatePostService {
 
 export class DeletePostService {
   async DeletePost(postId: number): Promise<void> {
-    await axios.delete(`http://localhost:3000/posts/${postId}`)
+    await axiosBlog.delete(`/posts/${postId}`)
   }
 }
