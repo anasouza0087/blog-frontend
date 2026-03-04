@@ -48,7 +48,7 @@ export const PostForm = ({
               className={`w-full border-2 rounded-sm ${showError && !postForm?.theme ? "border-red-400" : "border-neutral-200"} p-1 focus:outline-none focus:ring-0 placeholder:text-gray-400 placeholder:italic`}
               onChange={(e) => onChangePostForm("theme", e.target.value)}
             >
-              <option value="">Selecione</option>
+              <option value={!postForm?.theme ? '' : postForm.theme}>Selecione</option>
               {THEMES.map((theme) => {
                 return (
                   <option key={theme.id} value={theme.id}>

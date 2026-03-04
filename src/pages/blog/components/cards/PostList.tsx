@@ -16,6 +16,7 @@ export const PostList = ({
   onDelete,
   onOpenDetails,
 }: PostListProps) => {
+  console.log(posts)
   return (
     <section className="w-full">
       <div className="flex flex-col gap-6">
