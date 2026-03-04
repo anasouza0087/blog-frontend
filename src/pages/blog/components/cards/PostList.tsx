@@ -19,9 +19,9 @@ export const PostList = ({
   return (
     <section className="w-full">
       <div className="flex flex-col gap-6">
-        {posts.map((post: Post) => (
+        {posts?.map((post: Post) => (
           <PostCard
-            key={post.id}
+            key={post?.id}
             isEditable={isEditable}
             post={post}
             onEdit={onEdit}
